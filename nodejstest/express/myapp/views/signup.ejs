@@ -1,0 +1,31 @@
+<%- include('header') %>
+   <div id="app">
+   <el-form :model="formInline" action="/users/setsignup"   method="post">
+   <el-input v-model="formInline.account" name="account" placeholder="请输入账号"></el-input>
+   <el-input v-model="formInline.nickName" name="nickName" placeholder="请输入昵称"></el-input>
+   <el-input v-model="formInline.password" name="password"  type="password"  placeholder="请输入密码"></el-input>
+   <el-input v-model="formInline.twoPassword" name="twoPassword"  type="password"  placeholder="请确认密码"></el-input>
+  <el-button native-type="submit" >注册</el-button>
+  </el-form>
+  </div>
+    <script>
+    new Vue({
+      el: '#app',
+      data: function() {
+        return { 
+                formInline:{
+                    account:'12321312' ,
+                    nickName:'',
+                    password:'',
+                    twoPassword:''
+                }  
+            }
+      },
+      methods:{
+        setUser(){
+            console.log(this.input)
+        }
+      }
+    })
+  </script>
+<%- include('footer') %>

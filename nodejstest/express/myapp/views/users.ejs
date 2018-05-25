@@ -1,0 +1,13 @@
+<%- include('header') %>
+   <div id="app">
+   <el-input v-model="input" placeholder="请输入内容"></el-input>
+   <el-input type="password"  placeholder="请输入密码"></el-input>
+   <el-input type="password"  placeholder="请确认密码"></el-input>
+
+    <el-button v-on:click="postLogin">登录</el-button>
+    <el-button v-on:click="setUser">注册</el-button>
+    
+  </div>
+<%- include('footer') %>
+<script src="/js/users.js"></script>
+
