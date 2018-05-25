@@ -43,6 +43,20 @@ class blogMongo {
             })
         })
     }
+    findOne(keyData){
+        return new Promise((resove,reject)=>{
+            console.log(keyData)
+            Blogmodel.findOne({'_id':keyData._id},'-__v').then((res)=>{
+                console.log('mnp')
+                console.log(res)
+                // 查询成功
+                resove(res)
+            }).catch((error)=>{
+                // 查询失败
+                reject(error)
+            })
+        })
+    }
     upDatePraise(keyData){
         return new Promise((resove,reject)=>{
             Blogmodel.update({'_id':keyData._id},{$inc:{'praise':1}}).then((res)=>{

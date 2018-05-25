@@ -3,46 +3,62 @@ const express = require('express');
 const router = express.Router();
 const blogs = require('../lib/blog.js').blogs;
 
-//查询博客API
+//查询博客API列表
 router.get('/', (req, res) => {
-    blogs.find().then((findData)=>{
+    blogs.find().then((findData) => {
         res.json({
-            ok:true,
-            data:findData
+            ok: true,
+            data: findData
         })
-    }).catch((err)=>{
+    }).catch((err) => {
         console.log(err)
+        res.send({
+            ok: false,
+            data: ''
+        })
+    })
+
+})
+// 产选博客详情
+router.get('/findOne', (req, res) => {
+    blogs.findOne(req.query._id).then((findData)=>{
+        
+        console.log(findData)
+            res.send({
+                ok:true,
+                data:findData
+            })
+    }).catch((err)=>{
         res.send({
             ok:false,
             data:''
         })
     })
-
 })
 // 创建博客
-router.post('/add',(req,res)=>{
+router.post('/add', (req, res) => {
     let query = req.query;
-    blogs.add(query).then(()=>{
+    blogs.add(query).then(() => {
         res.send({
-            ok:true
+            ok: true
         })
-    }).catch((err)=>{
+    }).catch((err) => {
         res.send({
-            ok:false
+            ok: false
         })
     })
 })
 
 // 给某个博客点赞
-router.post('/upDate/praise',(req,res)=>{
+router.post('/upDate/praise', (req, res) => {
     let query = req.query;
-    blogs.upDatePraise(query).then(()=>{
+    blogs.upDatePraise(query).then(() => {
         res.send({
-            ok:true
+            ok: true
         })
-    }).catch(()=>{
+    }).catch(() => {
         res.send({
-            ok:false
+            ok: false
         })
     })
 })
