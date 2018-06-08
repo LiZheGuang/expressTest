@@ -5,7 +5,7 @@ const blogs = require('../lib/blog.js').blogs;
 
 //查询博客API列表
 router.get('/', (req, res) => {
-    blogs.find().then((findData) => {
+    blogs.find(req.query).then((findData) => {
         res.json({
             ok: true,
             data: findData
@@ -19,10 +19,9 @@ router.get('/', (req, res) => {
     })
 
 })
-// 产选博客详情
+// 产选博客详情 
 router.get('/findOne', (req, res) => {
     blogs.findOne(req.query._id).then((findData)=>{
-        
         console.log(findData)
             res.send({
                 ok:true,
@@ -59,6 +58,23 @@ router.post('/upDate/praise', (req, res) => {
     }).catch(() => {
         res.send({
             ok: false
+        })
+    })
+})
+
+// 删除谋篇文章
+router.post('/delete',(req,res)=>{
+    let query = req.query
+    blogs.delete(query).then((resData)=>{
+        console.log(resData)
+        res.send({
+            ok:true
+        })
+    }).catch((err)=>{
+        console.log(err)
+        
+        res.send({
+            ok:false
         })
     })
 })

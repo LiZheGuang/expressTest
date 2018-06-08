@@ -6,7 +6,8 @@ var blogSchema = new Schema({
     picker: { type: Array, default: [] }, //博客图片
     nickName: { type: String ,default:"姜子牙"}, //发布作者
     releaseTime:{type:Date,default: new Date()}, //发布时间
-    praise:{ type:Number,default:0 } //赞的数量
+    praise:{ type:Number,default:0 }, //赞的数量
+    type:{type:Boolean,default:true}  //true为正常显示 false为隐藏（删除）
 });
 // /2018-05-24T10:31:05.309Z
 var Blogmodel = mongoose.model('blog', blogSchema);
@@ -33,9 +34,10 @@ class blogMongo {
         })
         // console.log(personEntity.title)
     }
-    find(){
+    find(findData){
         return new Promise((resove,reject)=>{
-            Blogmodel.find({},'-__v ').then((res)=>{
+            
+            Blogmodel.find(findData,'-__v ').then((res)=>{
                 resove(res)
             }).catch((err)=>{
                 console.log('报错')
@@ -68,6 +70,21 @@ class blogMongo {
                 console.log(err)
             })
         })
+    }
+    // 删除某个博客文章
+    delete(keyData){
+
+        return new Promise((resove,reject)=>{
+            Blogmodel.update({'_id':keyData._id},{'type':false}).then((res)=>{
+                    resove(res)
+                    console.log('成功')
+            }).catch((err)=>{
+                console.log(err)
+                console.log('失败') 
+                    reject(err)
+            })
+        })
+        
     }
     
 }

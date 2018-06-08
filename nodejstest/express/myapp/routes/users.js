@@ -23,8 +23,6 @@ router.post('/setsignup', (req, res) => {
     let nickName = fields.nickName; //昵称
     let password = fields.password; //密码
     let twoPassword = fields.twoPassword; //确认密码
-
-
     user.setUser({
         account: account,
         nickName: nickName,
