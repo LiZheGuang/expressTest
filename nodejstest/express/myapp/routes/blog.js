@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
 
 })
 // 产选博客详情 
-router.get('/findOne', (req, res) => {
+router.get('/findOne',(req, res) => {
     blogs.findOne(req.query._id).then((findData)=>{
         console.log(findData)
             res.send({
@@ -36,7 +36,10 @@ router.get('/findOne', (req, res) => {
 })
 // 创建博客
 router.post('/add', (req, res) => {
-    let query = req.query;
+    console.log('穿件博客')
+    console.log(req)
+    let query = req.fields;
+
     blogs.add(query).then(() => {
         res.send({
             ok: true
@@ -47,7 +50,6 @@ router.post('/add', (req, res) => {
         })
     })
 })
-
 // 给某个博客点赞
 router.post('/upDate/praise', (req, res) => {
     let query = req.query;
@@ -61,7 +63,6 @@ router.post('/upDate/praise', (req, res) => {
         })
     })
 })
-
 // 删除谋篇文章
 router.post('/delete',(req,res)=>{
     let query = req.query
@@ -78,6 +79,10 @@ router.post('/delete',(req,res)=>{
         })
     })
 })
+
+// 留言
+
+
 
 
 

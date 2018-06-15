@@ -13,6 +13,7 @@ var blogSchema = new Schema({
 var Blogmodel = mongoose.model('blog', blogSchema);
 class blogMongo {
     add(keyData) {
+        console.log(keyData)
         return new Promise((resove, reject) => {
             var personEntity = new Blogmodel(
                 {
@@ -45,10 +46,12 @@ class blogMongo {
             })
         })
     }
-    findOne(keyData){
+  findOne(keyData){
+           
+
         return new Promise((resove,reject)=>{
             console.log(keyData)
-            Blogmodel.findOne({'_id':keyData._id},'-__v').then((res)=>{
+            Blogmodel.findOne({'_id':keyData},'-__v').then((res)=>{
                 console.log('mnp')
                 console.log(res)
                 // 查询成功

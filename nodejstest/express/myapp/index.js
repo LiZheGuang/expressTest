@@ -22,12 +22,15 @@ app.all('*', function(req, res, next) {
   next();
 });
 
+
+
+
+
+
 app.use(require('express-formidable')({
     uploadDir: path.join(__dirname, 'public/img'), // 上传文件目录
     keepExtensions: true// 保留后缀
   }))
-
-
   app.use(express.static(path.join(__dirname, 'public')))
   // session 中间件
   app.use(session({
@@ -46,6 +49,7 @@ app.use(require('express-formidable')({
   app.use(flash())
 
 //中间件
+
 app.use('/', indexRouter)
 app.use('/users', userRouter)
 app.use('/blog', blog)
@@ -54,10 +58,13 @@ serverInit();
 // 错误处理
 app.use(function (err, req, res, next) {
     console.error(err.stack)
-    res.status(500).send('Something broke!Error Node.js')
+    console.log('错误')
+    res.status(500).send({ok:false,message:'NODE，服务端报错'})
 })
 
-
+app.use(function(req, res, next) {
+  res.status(404).send({ok:false,message:'404'});
+});
 
 app.listen(3000)
 

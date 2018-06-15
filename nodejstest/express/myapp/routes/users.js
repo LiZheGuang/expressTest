@@ -16,7 +16,7 @@ router.get('/signup', (req, res) => {
 })
 
 router.post('/setsignup', (req, res) => {
-    console.log('嘻嘻嘻喜爱 post')
+
     console.log(req)
     let fields = req.fields;
     let account = fields.account;  //账号
