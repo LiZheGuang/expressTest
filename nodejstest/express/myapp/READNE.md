@@ -6,3 +6,7 @@ routes: 存放路由文件
 views: 存放模板文件
 index.js: 程序主文件
 package.json: 存储项目名、描述、作者、依赖等等信息
+
+
+
+<!-- supervisor index -->
